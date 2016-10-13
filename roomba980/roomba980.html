@@ -156,32 +156,32 @@
 
 
 
-
 <script type="text/javascript">
-    RED.nodes.registerType('start',{
+    RED.nodes.registerType('basic',{
         category: 'roomba980',
-        color: '#5094d8',
+        color: '#5ac950',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
             name: {value:""}
         },
         inputs:1,
         outputs:1,
-        align: 'right',
         icon: "roomba.png",
+        align: 'right',
         label: function() {
-            return this.name|| "start";
+            return this.name|| "basic";
         }
     });
 </script>
 
 
-<script type="text/x-red" data-template-name="start">
+<script type="text/x-red" data-template-name="basic">
 
     <div class="form-row">
     <label for="node-input-connection"><i class="fa "></i> Connection</label>
     <input type="text" id="node-input-connection" placeholder="">
   </div>
+
 
     <div class="form-row">
         <label for="node-input-name"><i class="icon-tag"></i> Name</label>
@@ -189,164 +189,16 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="start">
-    <p>A simple node that triggers the start() function of dorita980</p>
-</script>
-
-
-
-<script type="text/javascript">
-    RED.nodes.registerType('pause',{
-        category: 'roomba980',
-        color: '#5094d8',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        align: 'right',
-        icon: "roomba.png",
-        label: function() {
-            return this.name|| "pause";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="pause">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="pause">
-    <p>A simple node that triggers the pause() function of dorita980</p>
-</script>
-
-<script type="text/javascript">
-    RED.nodes.registerType('stop',{
-        category: 'roomba980',
-        color: '#5094d8',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        align: 'right',
-        icon: "roomba.png",
-        label: function() {
-            return this.name || "stop";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="stop">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="stop">
-    <p>A simple node that triggers the stop() function of dorita980</p>
-</script>
-
-
-<script type="text/javascript">
-    RED.nodes.registerType('resume',{
-        category: 'roomba980',
-        color: '#5094d8',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        align: 'right',
-        icon: "roomba.png",
-        label: function() {
-            return this.name || "resume";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="resume">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="resume">
-    <p>A simple node that triggers the resume() function of dorita980</p>
-</script>
-
-
-
-<script type="text/javascript">
-    RED.nodes.registerType('dock',{
-        category: 'roomba980',
-        color: '#5094d8',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        align: 'right',
-        icon: "roomba.png",
-        label: function() {
-            return this.name || "dock";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="dock">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="dock">
-    <p>A simple node that triggers the dock() function of dorita980</p>
+<script type="text/x-red" data-help-name="basic">
+    <p>A simple node that triggers one of the basic functions of dorita980.</p>
+    <p>It accepts msg.payload as "start","pause","stop","resume" or "dock". </p>
 </script>
 
 
 <script type="text/javascript">
     RED.nodes.registerType('getstatus',{
         category: 'roomba980',
-        color: '#5094d8',
+        color: '#d8a822',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
             name: {value:""}
@@ -382,7 +234,7 @@
 <script type="text/javascript">
     RED.nodes.registerType('accumulatedHistorical',{
         category: 'roomba980',
-        color: '#5094d8',
+        color: '#d8a822',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
             name: {value:""}
@@ -418,7 +270,7 @@
 <script type="text/javascript">
     RED.nodes.registerType('missionHistory',{
         category: 'roomba980',
-        color: '#5094d8',
+        color: '#d8a822',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
             name: {value:""}

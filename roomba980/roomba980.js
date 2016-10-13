@@ -71,7 +71,7 @@ module.exports = function(RED) {
   }
 
 
-  function startNode(config) {
+  function basicNode(config) {
     RED.nodes.createNode(this, config);
 
     this.server = RED.nodes.getNode(config.connection);
@@ -95,134 +95,31 @@ module.exports = function(RED) {
     var node = this;
     this.on('input', function(msg) {
 
+      var method;
 
-      eval("myRobotViaLocal." + "start" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
+      switch (msg.payload) {
+        case "start":
+          method = "start";
+          break;
+        case "pause":
+          method = "pause";
+          break;
+        case "stop":
+          method = "stop";
+          break;
+        case "resume":
+          method = "resume";
+          break;
+        case "dock":
+          method = "dock";
+          break;
+        default:
+          method = "";
+      }
 
-    });
-  }
-
-
-  function pauseNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
-
-
-    myRobotViaLocal.getTime().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaLocal." + "pause" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
-
-    });
-  }
-
-
-  function stopNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
-
-
-    myRobotViaLocal.getTime().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaLocal." + "stop" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
-
-    });
-  }
-
-
-
-  function resumeNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
-
-
-    myRobotViaLocal.getTime().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaLocal." + "resume" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
-
-    });
-  }
-
-
-
-  function dockNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
-
-
-    myRobotViaLocal.getTime().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaLocal." + "dock" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
+      if (method.length > 0) {
+        eval("myRobotViaLocal." + method + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
+      }
 
     });
   }
@@ -322,11 +219,7 @@ module.exports = function(RED) {
 
   RED.nodes.registerType("get", getMethodNode);
   RED.nodes.registerType("set", setMethodNode);
-  RED.nodes.registerType("start", startNode);
-  RED.nodes.registerType("pause", pauseNode);
-  RED.nodes.registerType("stop", stopNode);
-  RED.nodes.registerType("resume", resumeNode);
-  RED.nodes.registerType("dock", dockNode);
+  RED.nodes.registerType("basic", basicNode);
   RED.nodes.registerType("accumulatedHistorical", accumulatedHistoricalNode);
   RED.nodes.registerType("missionHistory", missionHistoryNode);
   RED.nodes.registerType("getstatus", statusNode);
