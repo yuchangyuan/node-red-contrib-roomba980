@@ -16,7 +16,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tyrrellsytems/node-red-contrib-serial-modbus"
+    "url": "https://github.com/somebuddy87/node-red-contrib-roomba980"
   },
   "dependencies": {
     "dorita980": "^2.4.0"
