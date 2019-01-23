@@ -1,5 +1,5 @@
 # node-red-contrib-roomba980
-Roomba 980 support for nodered
+Roomba 980(v2 firmware) support for nodered
 
 Credit goes to dorita980. 
 
