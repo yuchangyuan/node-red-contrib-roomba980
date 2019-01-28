@@ -4,9 +4,12 @@ module.exports = function(RED) {
 
   function dorita980ConfigNode(n) {
     RED.nodes.createNode(this, n);
-    this.ip = n.ip;
-    this.username = n.username;
-    this.password = n.password;
+
+      this.robot = new dorita980.Local(n.username, n.password, n.ip);
+
+      this.on('close', function() {
+          this.robot.end();
+      });
   }
 
 
@@ -15,7 +18,7 @@ module.exports = function(RED) {
     RED.nodes.createNode(this, config);
 
     this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
+      var myRobotViaLocal = this.server.robot;
 
 
     myRobotViaLocal.getTime().then((response) => {
@@ -36,7 +39,7 @@ module.exports = function(RED) {
     this.on('input', function(msg) {
 
 
-      eval("myRobotViaLocal." + config.method + "().then((response) => {msg.payload = response.ok; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
+      eval("myRobotViaLocal." + config.method + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
 
     });
   }
@@ -46,7 +49,7 @@ module.exports = function(RED) {
     RED.nodes.createNode(this, config);
 
     this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
+      var myRobotViaLocal = this.server.robot;
 
     myRobotViaLocal.getTime().then((response) => {
       this.status({
@@ -75,7 +78,7 @@ module.exports = function(RED) {
     RED.nodes.createNode(this, config);
 
     this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaLocal = new dorita980.Local(this.server.username, this.server.password, this.server.ip);
+      var myRobotViaLocal = this.server.robot;
 
 
     myRobotViaLocal.getTime().then((response) => {
@@ -125,103 +128,9 @@ module.exports = function(RED) {
   }
 
 
-  function accumulatedHistoricalNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaCloud = new dorita980.Cloud(this.server.username, this.server.password);
-
-
-    myRobotViaCloud.fbeep().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaCloud." + "accumulatedHistorical" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
-
-    });
-  }
-
-  function missionHistoryNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaCloud = new dorita980.Cloud(this.server.username, this.server.password);
-
-
-    myRobotViaCloud.fbeep().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaCloud." + "missionHistory" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
-
-    });
-  }
-
-
- function statusNode(config) {
-    RED.nodes.createNode(this, config);
-
-    this.server = RED.nodes.getNode(config.connection);
-    var myRobotViaCloud = new dorita980.Cloud(this.server.username, this.server.password);
-
-
-    myRobotViaCloud.fbeep().then((response) => {
-      this.status({
-        fill: "green",
-        shape: "dot",
-        text: "connected"
-      });
-    }).catch((err) => {
-      this.status({
-        fill: "red",
-        shape: "ring",
-        text: "disconnected"
-      });
-    });
-
-    var node = this;
-    this.on('input', function(msg) {
-
-
-      eval("myRobotViaCloud." + "getStatus" + "().then((response) => {msg.payload = response; node.send(msg);}).catch((err) => {msg.payload = err;node.send(msg);});");
-
-    });
-  }
-
-
   RED.nodes.registerType("get", getMethodNode);
   RED.nodes.registerType("set", setMethodNode);
   RED.nodes.registerType("basic", basicNode);
-  RED.nodes.registerType("accumulatedHistorical", accumulatedHistoricalNode);
-  RED.nodes.registerType("missionHistory", missionHistoryNode);
-  RED.nodes.registerType("getstatus", statusNode);
+
   RED.nodes.registerType('dorita980Config', dorita980ConfigNode);
 }

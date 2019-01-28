@@ -1,8 +1,8 @@
 {
-  "name": "node-red-contrib-roomba980",
-  "version": "0.0.9",
-  "description": "Node to control a Roomba980 robot via dorita980 API ",
-  
+  "name": "node-red-contrib-roomba980-v2",
+  "version": "0.0.1",
+  "description": "Node to control a Roomba980(v2 firmware) robot via dorita980 API ",
+
   "keywords": [
     "node-red",
     "roomba",
@@ -10,11 +10,31 @@
     "irobot",
     "dorita980"
   ],
-  "author": "Dennis Henning <somebuddy87@gmail.com>",
+
+    "author": {
+        "name": "Yu Changyuan",
+        "email": "reivzy@gmail.com",
+        "url": "https://github.com/yuchangyuan"
+    },
+
+    "contributors": [
+        {
+            "name": "Yu Changyuan",
+            "email": "reivzy@gmail.com",
+            "url": "https://github.com/yuchangyuan"
+        },
+
+        {
+            "name": "Dennis Henning",
+            "email": "somebuddy87@gmail.com",
+            "url": "https://github.com/somebuddy87"
+        }
+    ],
+
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/somebuddy87/node-red-contrib-roomba980"
+    "url": "https://github.com/yuchangyuan/node-red-contrib-roomba980-v2"
   },
   "dependencies": {
     "dorita980": ">=2.4.0"

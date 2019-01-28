@@ -45,12 +45,12 @@
 
 <script type="text/javascript">
     RED.nodes.registerType('get',{
-        category: 'roomba980',
+        category: 'roomba980v2',
         color: '#5094d8',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
             method:{value:"",required: true},
-            name: {value:""}            
+            name: {value:""}
         },
         inputs:1,
         outputs:1,
@@ -81,10 +81,8 @@
             <option value="getPreferences">getPreferences()</option>
             <option value="getMission">getMission()</option>
             <option value="getWirelessStatus">getWirelessStatus()</option>
-            <option value="getCloudConfig">getCloudConfig()</option>
-
           </select>
-       
+
         </div>
 
     <div class="form-row">
@@ -100,7 +98,7 @@
 
 <script type="text/javascript">
     RED.nodes.registerType('set',{
-        category: 'roomba980',
+        category: 'roomba980v2',
         color: '#5094d8',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
@@ -138,9 +136,9 @@
             <option value="setCleaningPassesTwo">setCleaningPassesTwo()</option>
             <option value="setAlwaysFinishOn">setAlwaysFinishOn()</option>
             <option value="setAlwaysFinishOff">setAlwaysFinishOff()</option>
-
+            <option value="setWeek">setWeek()</option>
           </select>
-       
+
         </div>
 
 
@@ -158,7 +156,7 @@
 
 <script type="text/javascript">
     RED.nodes.registerType('basic',{
-        category: 'roomba980',
+        category: 'roomba980v2',
         color: '#5ac950',
         defaults: {
             connection: {type: 'dorita980Config', required: true},
@@ -193,113 +191,3 @@
     <p>A simple node that triggers one of the basic functions of dorita980.</p>
     <p>It accepts msg.payload as "start","pause","stop","resume" or "dock". </p>
 </script>
-
-
-<script type="text/javascript">
-    RED.nodes.registerType('getstatus',{
-        category: 'roomba980',
-        color: '#d8a822',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        icon: "roomba.png",
-        label: function() {
-            return this.name || "getstatus";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="getstatus">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="getstatus">
-    <p>A simple node that triggers the getStatus() function of dorita980 ( Cloud Connection ! ) </p>
-</script>
-
-
-<script type="text/javascript">
-    RED.nodes.registerType('accumulatedHistorical',{
-        category: 'roomba980',
-        color: '#d8a822',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,      
-        icon: "roomba.png",
-        label: function() {
-            return this.name  || "accumulatedHistorical";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="accumulatedHistorical">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="accumulatedHistorical">
-    <p>A simple node that triggers the accumulatedHistorical() function of dorita980 ( Cloud Connection ! ) </p>
-</script>
-
-
-<script type="text/javascript">
-    RED.nodes.registerType('missionHistory',{
-        category: 'roomba980',
-        color: '#d8a822',
-        defaults: {
-            connection: {type: 'dorita980Config', required: true},
-            name: {value:""}
-        },
-        inputs:1,
-        outputs:1,
-        icon: "roomba.png",
-        label: function() {
-            return this.name || "missionHistory";
-        }
-    });
-</script>
-
-
-<script type="text/x-red" data-template-name="missionHistory">
-
-    <div class="form-row">
-    <label for="node-input-connection"><i class="fa "></i> Connection</label>
-    <input type="text" id="node-input-connection" placeholder="">
-  </div>
-
-    <div class="form-row">
-        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
-        <input type="text" id="node-input-name" placeholder="Name">
-    </div>
-</script>
-
-<script type="text/x-red" data-help-name="missionHistory">
-    <p>A simple node that triggers the missionHistory() function of dorita980 ( Cloud Connection ! ) </p>
-</script>
-
-
