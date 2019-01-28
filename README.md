@@ -1,4 +1,4 @@
-# node-red-contrib-roomba980
+# node-red-contrib-roomba980-fw2
 Roomba 980(v2 firmware) support for nodered
 
 Credit goes to dorita980. 
