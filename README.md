@@ -6,8 +6,7 @@ Credit goes to dorita980.
 You can look up either git to find information on setup and how to get the BLID and Password for you Roomba:
 https://github.com/koalazak/dorita980#how-to-get-your-usernameblid-and-password
 
-![alt tag](https://cloud.githubusercontent.com/assets/4713347/19355548/09eef456-916b-11e6-9d73-992d4ec5541c.PNG)
-
+![alt tag](https://user-images.githubusercontent.com/1221448/52189282-930d0e80-2872-11e9-8e80-c95f5baa6396.PNG)
 
 # Commands implemented from Dorita980 ( https://github.com/koalazak/dorita98 )
 
