@@ -5,7 +5,7 @@ module.exports = function(RED) {
   function dorita980ConfigNode(n) {
     RED.nodes.createNode(this, n);
 
-      this.robot = new dorita980.Local(n.username, n.password, n.ip);
+      this.robot = new dorita980.Local(this.credentials.username, this.credentials.password, n.ip);
 
       this.on('close', function() {
           this.robot.end();
@@ -132,5 +132,10 @@ module.exports = function(RED) {
   RED.nodes.registerType("set", setMethodNode);
   RED.nodes.registerType("basic", basicNode);
 
-  RED.nodes.registerType('dorita980Config', dorita980ConfigNode);
+  RED.nodes.registerType('dorita980Config', dorita980ConfigNode, {
+    credentials: {
+      username: { type: 'text' },
+      password: { type: 'password' }
+    }
+  });
 }

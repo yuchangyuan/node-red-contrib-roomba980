@@ -3,9 +3,11 @@
     category:'config',
     defaults: {
       ip: {value: '', required: true},
-      username: {value: '', required: true},
-      password: {value: '', required: true},
       name: {value: ''}
+    },
+    credentials: {
+      username: { type: 'text' },
+      password: { type: 'password' }
     },
     label: function(){
       return this.name || 'Roomba980';
