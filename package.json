@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-roomba980-fw2",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Node to control a Roomba980(v2 firmware) robot via dorita980 API ",
 
   "keywords": [
